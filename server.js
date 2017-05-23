@@ -38,6 +38,10 @@ new WebpackDevServer(webpack(config), {
   console.log('Listening at localhost:3000');
 });
 
+//Api router--------
+import Router from './router/router';
+app.use(Router.routes());
+
 app.use(Static(path.join(__dirname, 'static')));
 app.use(async (ctx) => {
   await Send(ctx, '/static/index.html');
