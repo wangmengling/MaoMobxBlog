@@ -1,21 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import AppState from './AppState';
-import App from './App';
+import AppState from './Welcome/AppState';
+import App from './Welcome/App';
+import Routes from './Routes'
 
 const appState = new AppState();
 
 render(
   <AppContainer>
-    <App appState={appState} />
+    <Routes />
   </AppContainer>,
   document.getElementById('root')
 );
 
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default;
+/*if (module.hot) {
+  module.hot.accept('./Welcome/App', () => {
+    const NextApp = require('./Welcome/App').default;
 
     render(
       <AppContainer>
@@ -24,4 +25,4 @@ if (module.hot) {
       document.getElementById('root')
     );
   });
-}
+}*/

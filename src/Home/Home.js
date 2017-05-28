@@ -3,21 +3,21 @@ import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
 @observer
-class App extends Component {
+class Home extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.onReset}>
-          Secondss sdsdpassed: {this.props.appState.timer}
+        <button onClick={this.onChangeContent}>
+          come : {this.props.homeState.content}
         </button>
         <DevTools />
       </div>
     );
   }
 
-  onReset = () => {
-    this.props.appState.resetTimer();
+  onChangeContent = () => {
+    this.props.homeState.changeContent();
   }
 };
 
-export default App;
+export default Home;
