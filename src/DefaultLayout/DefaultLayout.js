@@ -5,13 +5,22 @@ import {
   Link
 } from 'react-router-dom'
 
+import Header from '../Header'
+import './DefaultLayout.scss'
+
 const DefaultLayout = ({component: Component, ...rest}) => {
   return (
     <Route {...rest} render={matchProps => (
-      <div className="DefaultLayout">
-        <div className="Header">Header</div>
-          <Component {...matchProps} />
-        <div className="Footer">Footer</div>
+      <div className='LayoutRoot'>
+        <div className="LayoutHeader">
+          <Header />
+        </div>
+        <div  className="LayoutContent">
+            <Component {...matchProps} />
+        </div>
+        <div className="LayoutFooter">
+          Powered by Koa © 2017 茂林
+        </div>
       </div>
     )} />
   )

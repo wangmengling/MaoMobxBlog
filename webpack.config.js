@@ -25,6 +25,19 @@ module.exports = {
       test: /\.jsx?$/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
-    }]
+    },
+    {test: /\.css$/, loader: 'style-loader!css-loader'},                      /*css to css*/
+            {test: /\.(jpg|png)$/, loader: "url?limit=8192"},  //limit=8192表示图片大小单位是k  小于这个值走内联大于这个值走外联             /*images 打包*/
+            {test: /\.less$/, loader: "style!css!less"},
+            {test: /\.scss$/, loader: "style!css!sass"},                 /*less to css*/
+            {
+              test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              loader: "url?limit=10000"
+            },
+            {
+              test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+              loader: 'file'
+            } 
+    ]
   }
 };

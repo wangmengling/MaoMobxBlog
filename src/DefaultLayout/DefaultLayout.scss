@@ -1,0 +1,23 @@
+.LayoutRoot {
+    display: flex;
+    flex-direction: column;
+    font-family :PingFangTC-Light, sans-serif; 
+    justify-content: space-between;
+    .LayoutHeader {
+        height: 160px;
+        display: flex;
+        justify-content: space-between;
+        // background-color: #F1F2F7;
+        align-items: center;
+    }
+    .LayoutContent {
+        display: flex;
+        justify-content: center;
+        // background-color: #F1F2F7;
+    }
+    .LayoutFooter {
+        text-align: center;
+        padding: 20px;
+        background-color: #999999;
+    }
+}

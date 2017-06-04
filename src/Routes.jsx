@@ -15,9 +15,9 @@ import AdminLayout from "./DefaultLayout/AdminLayout"
 const Routes = () => (
   <Router  history={browserHistory}>
     <div>
-        <DefaultLayout path="/about" component={About} />
-        <Route exact path="/" component={App}/>
-        <Route path="/home" component={Home}/>
+        <DefaultLayout exact path="/about" component={About} />
+        <DefaultLayout exact path="/" component={Home}/>
+        <DefaultLayout exact path="/home" component={Home}/>
     </div>
   </Router>
 )
