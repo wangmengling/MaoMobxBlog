@@ -4,11 +4,11 @@
 import axios from 'axios';
 // const host = 'HTTP://localhost:3000' ;
 
-const host = 'http://localhost:4000' ;
+const host = 'http://localhost:3001' ;
 
 export default function apis({ url, method, ...others }) {
-  console.log(host + url)
-  alert(host + url)
+  // console.log(host + url)
+  // alert(host + url)
   return axios({
     url: host + url,
     method: method,
