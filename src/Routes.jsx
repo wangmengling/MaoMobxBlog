@@ -12,12 +12,14 @@ import Home from "./Home"
 import About from "./About"
 import DefaultLayout from "./DefaultLayout/DefaultLayout"
 import AdminLayout from "./DefaultLayout/AdminLayout"
+import BlogDetail from "./BlogDetail/BlogDetail"
 const Routes = () => (
   <Router  history={browserHistory}>
     <div>
         <DefaultLayout exact path="/about" component={About} />
         <DefaultLayout exact path="/" component={Home}/>
         <DefaultLayout exact path="/home" component={Home}/>
+        <DefaultLayout exact path="/blogDetail" component={BlogDetail} />
     </div>
   </Router>
 )

@@ -25,6 +25,9 @@ class Article extends Base {
             this.time = obj.time || '';
             // 标题
             this.title = obj.title || '';
+            this.category = obj.category || '';
+            this.tag = obj.tag || '';
+            this.comment = obj.comment || '0';
         }
         console.log(this);
         // 存储用主要键名，相当于表名

@@ -6,8 +6,8 @@ class ArticleController {
         console.log('update');
         let article = new Article({
             // id: 1,
-            _id: '58d33395c20b8f479689d592',
-            id: '58d33395c20b8f479689d592',
+            _id: '58d33395c20b8f479689d596',
+            id: '58d33395c20b8f479689d596',
             username: 'wangguozhong',
             // 简介
             summary: 'Swift 团队最近在邮件列表里向社区发了一封邮件，讲述了关于内存所有权方面的一些未来的改变方向。作为上层 API 的使用者来说，我们可能并不需要了解背后所有的事实，但是 Apple 的这封邮件中对 Swift 的值和对象的内存管理进行了很全面的表述，一步步说明了前因后果。如果你想深入学习和了解 Swift 的话，这篇文章是非常棒的参考资料。我尝试翻译了一下全文，并且加上了一些自己的注解。虽然这篇文章比较长，但是如果你想要进阶 Swift 的话，不妨花时间通读全文 (甚至通读全文若干遍)。',
@@ -16,7 +16,10 @@ class ArticleController {
             // 时间
             time : '1496577824',
             // 标题
-            title:'所有权宣言 - Swift 官方文章 Ownership Manifesto 译文评注版'
+            title:'所有权宣言 - Swift 官方文章 Ownership Manifesto 译文评注版',
+            category: 'React, Koa',
+            comment: "4",
+            tag: '#React, #Koa'
         });
         let ret = await article.add();
         let articleData = await article.getAll();
