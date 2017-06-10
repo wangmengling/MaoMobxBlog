@@ -46,4 +46,7 @@ app.use(Static(path.join(__dirname, 'static')));
 app.use(async (ctx) => {
   await Send(ctx, '/static/index.html');
 })
+// app.use(async (ctx) => {
+//   await Send(ctx, '/static/index.html');
+// })
 app.listen(3001);

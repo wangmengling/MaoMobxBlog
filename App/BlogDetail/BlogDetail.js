@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import Comment from '../Comment/Comment'
 import './BlogDetail.scss'
 
 class BlogDetail extends Component {
@@ -10,37 +11,37 @@ class BlogDetail extends Component {
 //    }
     render() {
         console.log(this.props);
-        // const { aritcleData } = this.props.location.state || { aritcleData: { pathname: '/' } }
+        const { aritcleData } = this.props.location.state || { aritcleData: { pathname: '/' } }
         return (
-            <div className='Summary'>
-                <div className='SummaryTitle'>
+            <div className='Detail'>
+                <div className='DetailTitle'>
                     {aritcleData.title}
                 </div>
-                <div className='SummaryTime'>
+                <div className='DetailTime'>
                     {this.getLocalTime(aritcleData.time)}
                 </div>
-                <div  className='SummaryContent'>
-                    {aritcleData.summary}
+                <div  className='DetailContent'>
+                    {aritcleData.content}
                 </div>
-                <div className='SummaryBottom'>
-                    <div className='SummaryTag'>
-                        <i className='SummaryTagCategory'>
+                <div className='DetailBottom'>
+                    <div className='DetailTag'>
+                        <i className='DetailTagCategory'>
                         </i>
                         {aritcleData.category}
-                        <i className='SummaryTagIcon'>
+                        <i className='DetailTagIcon'>
                         </i>
                         {aritcleData.tag}
                     </div>
-                    <div className='SummaryComment'>
-                        <i className="SummaryCommentIcon"> </i>
-                        <div className='SummaryCommentNum'>
+                    <div className='DetailComment'>
+                        <i className="DetailCommentIcon"> </i>
+                        <div className='DetailCommentNum'>
                             {aritcleData.comment}
                         </div>
                         
                     </div>
                 </div>
-                <div className="SummaryBottomLine">
-
+                <div className="DetailCommentList">
+                    <Comment />
                 </div>
             </div>
         );
