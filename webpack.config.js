@@ -3,15 +3,23 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval',
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './App/index'
-  ], 
+  entry: {
+      'app':[
+            'react-hot-loader/patch',
+            'webpack-dev-server/client?http://localhost:3000',
+            'webpack/hot/only-dev-server',
+            './App/index',
+        ],
+        'admin':[
+            'react-hot-loader/patch',
+            'webpack-dev-server/client?http://localhost:3000',
+            'webpack/hot/only-dev-server',
+            './Admin/Index'
+        ]
+  } , 
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: './[name].bundle.js',
     publicPath: '/static/'
   },
   plugins: [
@@ -21,7 +29,8 @@ module.exports = {
     extensions: ['.js', '.jsx', '.less', '.scss', '.css'],
     modules: [
       path.resolve(__dirname, 'node_modules'),
-      path.join(__dirname, './App')
+      path.join(__dirname, './App'),
+      path.join(__dirname, './Admin')
     ]
   },
   module: {
@@ -29,7 +38,7 @@ module.exports = {
           test: /\.(js|jsx)$/,
           use: ['babel-loader'],
           exclude: /node_modules/,
-          include: path.join(__dirname, 'App')
+          // include: path.join(__dirname, 'App')
       }, {
           test: /\.(less|css|scss)$/,
           use: ["style-loader", "css-loader", "sass-loader"]

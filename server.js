@@ -3,6 +3,7 @@ import Send from 'koa-send';
 import Koa from 'koa';
 import path from 'path';
 const app = new Koa();
+import middleware from 'koa-webpack';
 
 // x-response-time
 
@@ -40,11 +41,15 @@ new WebpackDevServer(webpack(config), {
 
 //Api router--------
 import Router from './router/router';
-app.use(Router.routes());
 
+app.use(Router.routes());
 app.use(Static(path.join(__dirname, 'static')));
+// app.use(Static(path.join(__dirname, 'static')));
+// app.use(async (ctx) => {
+//   await Send(ctx, '/static/index.html');
+// })
 app.use(async (ctx) => {
-  await Send(ctx, '/static/index.html');
+  await Send(ctx, '/static/Admin.html');
 })
 // app.use(async (ctx) => {
 //   await Send(ctx, '/static/index.html');

@@ -4,11 +4,11 @@ import { AppContainer } from 'react-hot-loader';
 
 import Routes from './Routes'
 
-const appState = new AppState();
+// const appState = new AppState();
 
 render(
   <AppContainer>
     <Routes />
   </AppContainer>,
-  document.getElementById('root')
+  document.getElementById('rootAdmin')
 );
