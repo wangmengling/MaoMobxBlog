@@ -3,6 +3,8 @@ import {
   Link,
   Redirect
 } from 'react-router-dom'
+
+
 import './Summary.scss'
 
 class Summary extends Component {
