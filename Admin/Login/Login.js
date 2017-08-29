@@ -6,7 +6,9 @@ class Login extends  Component {
     render() {
         return(
             <div className="Login">
-                登陆dddddddddd
+                <div >
+                    
+                </div>
             </div>
         );
     }
