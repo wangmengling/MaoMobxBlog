@@ -2,3 +2,8 @@ node_modules
 npm-debug.log
 .DS_Store
 node_modules/*
+node_modules/
+node_modules/abbrev/package.json
+node_modules/ansi-styles/package.json
+node_modules/ansi-styles/package.json
+node_modules/babel-eslint/package.json
