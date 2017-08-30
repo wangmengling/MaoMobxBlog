@@ -1,4 +1,4 @@
 node_modules
 npm-debug.log
 .DS_Store
-node_modules/align-text/package.json
+node_modules/*
