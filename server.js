@@ -3,7 +3,7 @@ import Send from 'koa-send';
 import Koa from 'koa';
 import path from 'path';
 const app = new Koa();
-import middleware from 'koa-webpack';
+// import middleware from 'koa-webpack';
 
 // x-response-time
 
