@@ -7,7 +7,7 @@ class Editor extends Component {
     render() {
         return (
             <div className="EditorContent">
-                 {/* <div className="left-wrapper">
+                 <div className="left-wrapper">
                     <input type="text" id="titleInput" />
                     <ul className="tools"></ul>
                     <textarea id="articleInput"></textarea>
@@ -17,8 +17,7 @@ class Editor extends Component {
                         <h1 id="titleOutput"></h1>
                         <div id="articleOutput"></div>
                     </div>
-                </div> */}
-                <ReactMarkdown source={input} escapeHtml={true}/>
+                </div>
             </div>
         );
     }
