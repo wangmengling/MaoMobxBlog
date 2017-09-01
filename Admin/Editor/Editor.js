@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import  ReactMarkdown from 'react-markdown'
-
+// import  ReactMarkdown from 'react-markdown'
+import MarkdownInput from '@opuscapita/react-markdown'
 var input = '## This is a header\n\n*And this is a paragraph*';
 import './Editor.scss'
 class Editor extends Component {
@@ -8,9 +8,7 @@ class Editor extends Component {
         return (
             <div className="EditorContent">
                  <div className="left-wrapper">
-                    <input type="text" id="titleInput" />
-                    <ul className="tools"></ul>
-                    <textarea id="articleInput"></textarea>
+                    <MarkdownInput onChange/>
                 </div>
                 <div className="right-wrapper">
                     <div className="output">
