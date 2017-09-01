@@ -1,0 +1,18 @@
+.LoginScss {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    .Login {
+        flex: 1;
+    };
+    .checkbox {
+        align-items: stretch;
+        width: 150px;
+        .CheckboxInput {
+            margin-right: 10px;
+        }
+    }
+    .corner-icon {
+        align-self: center;
+    }
+}

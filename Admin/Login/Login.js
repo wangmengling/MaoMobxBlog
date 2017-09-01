@@ -5,6 +5,7 @@ import './Login.scss'
 class Login extends  Component {
     render() {
         return(
+            <div className="LoginScss">
             <div className="Login">
                 <link rel="stylesheet" type="text/css" href="../dist/css/is-awesome.css" />
                 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -39,7 +40,7 @@ class Login extends  Component {
                               <div className="column is-6">
                                   <p className="control">
                                     <label className="checkbox">
-                                      <input type="checkbox" />
+                                      <input type="checkbox" className="CheckBoxInput"/>
                                       Remember me
                                     </label>
                                   </p>
@@ -54,23 +55,25 @@ class Login extends  Component {
                            
                           <br/>
                           <div className="columns">
-                              <div className="column is-12">
+                              <div className="column is-10">
                                   <a>Forgot password</a>
                               </div>
+                              <div className="column is-2 corner-github">
+                                    <span className="corner-icon">
+                                        <a href="https://github.com/ettorej/ettorej.github.io"><i className="fa fa-github"></i></a>
+                                    </span>
+                                </div>
                           </div>
                       </div>
   
                   </div>
                 </div>
-                <div className="corner-github">
-                  <span className="corner-icon">
-                      <a href="https://github.com/ettorej/ettorej.github.io"><i className="fa fa-github"></i></a>
-                  </span>
-              </div>
+                
           </div>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.js"></script>
 	  	<script src='../plugins/kissui.scrollanim/build/scrollanim.js'></script>
+            </div>
             </div>
         );
     }
