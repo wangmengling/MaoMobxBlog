@@ -1,6 +1,17 @@
 import React, { Component } from 'react'
 import  ReactMarkdown from 'react-markdown'
 import {MarkdownEditor} from 'react-markdown-editor';
+import {
+    Upload,
+    Modal,
+    Button,
+    Popconfirm,
+    Form,
+    Input,
+    message,
+    // Affix,
+    Icon
+  } from 'antd';
 // import CodeMirror from 'react-codemirror';
 import LzEditor from 'react-lz-editor'
 var input = '## This is a header\n\n*And this is a paragraph*';

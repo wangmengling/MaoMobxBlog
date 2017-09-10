@@ -51,6 +51,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "bulma": "^0.5.1",
+    "draft-js": "^0.10.1",
     "koa": "^2.3.0",
     "koa-router": "^7.2.1",
     "koa-send": "^4.1.0",
