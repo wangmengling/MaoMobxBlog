@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Login from './Login';
+import Detail from './Detail';
 
 export default  () => (
-    <Login />
+    <Detail />
 )

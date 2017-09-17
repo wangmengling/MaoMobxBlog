@@ -21,11 +21,21 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
                         <aside className="column is-2 aside hero is-fullheight is-hidden-mobile">
                             <div>
                                 <div className="main">
-                                    <div className="title">Main</div>
-                                    <a href="#" className="item active"><span className="icon"><i className="fa fa-home"></i></span><span className="name">Dashboard</span></a>
-                                    <a href="#" className="item"><span className="icon"><i className="fa fa-map-marker"></i></span><span className="name">Activity</span></a>
-                                    <a href="#" className="item"><span className="icon"><i className="fa fa-th-list"></i></span><span className="name">Timeline</span></a>
-                                    <a href="#" className="item"><span className="icon"><i className="fa fa-folder-o"></i></span><span className="name">Folders</span></a>
+                                    <div className="title">家</div>
+                                    <Link to="/admin"  className="item active">
+                                    <span className="icon">
+                                            <i className="fa fa-home">
+                                                </i>
+                                            </span>
+                                            <span className="name">首页</span>
+                                    </Link>
+
+                                    <Link to="/admin/list"  className="item">
+                                        <span className="icon">
+                                        <i className="fa fa-th-list"></i>
+                                    </span>
+                                    <span className="name">列表</span>
+                                    </Link>
                                 </div>
                             </div>
                         </aside>

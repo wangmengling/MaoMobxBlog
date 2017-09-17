@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Login from './Login';
+import List from './List';
 
 export default  () => (
-    <Login />
+    <List />
 )

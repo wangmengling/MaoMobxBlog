@@ -104,8 +104,47 @@ html, body {
     height: 100%;
     .showContentTitle {
         height: 100px;
+        align-content: center;
     }
     .showContentContent {
         
+    }
+}
+
+.EditorContent {
+    display: flex;
+    .EditorContentInput{
+        flex: 1;
+        margin-bottom: 10px;
+        .InputTitle{
+            display: inline-flex;
+            // flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            .titleRight {
+                flex: 9;
+                input {
+                    width: 80%;
+                    // height: 100%;
+                    height: 50px;
+                    font-size: 20px;
+                    border-color: red;
+                    border-width: 0px;
+                    margin-left: 10px;
+                }
+                margin-bottom: 10px;
+            }
+            
+            .saveButton {
+                flex: 1;
+                margin-bottom: 10px;
+                justify-content: flex-end;
+            }
+        }
+        
+    }
+    .EditorContentContent {
+        flex: 9;
     }
 }

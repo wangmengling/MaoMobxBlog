@@ -1,0 +1,23 @@
+.DetailContent{
+    display: flex;
+    flex-direction: column;
+    .DetailTitle{
+        height: 50px;
+        margin: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .DetailTitleFont {
+            
+        }
+        .DetailEditButton {
+            
+        }
+    }
+    .DetailContentBottom {
+        margin: 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
+}

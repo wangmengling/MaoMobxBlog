@@ -7,16 +7,20 @@ import {
   Switch,
   browserHistory
 } from 'react-router-dom'
-import Login from "./Login/Login"
+import Login from "./Login"
 import Home from "./Home/Home"
 import Editor from "./Editor/"
 import DefaultLayout from "./Layout/DefaultLayout"
+import List from "./List/"
+import Detail from "./Detail"
 const Routes = () => (
   <Router  history={browserHistory}>
     <div>
-        <Route exact path="/admin/editor" component={Editor}/>
+        <DefaultLayout exact path="/admin/editor" component={Editor}/>
         <DefaultLayout exact path="/admin" component={Home}/>
         <Route exact path="/admin/login" component={Login}/>
+        <DefaultLayout exact path="/admin/list" component={List}/>
+        <DefaultLayout exact path="/admin/detail" component={Detail}/>
     </div>
   </Router>
 )
