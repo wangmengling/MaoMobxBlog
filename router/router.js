@@ -25,8 +25,4 @@ router.get('/api/v1/article/getList',async function (ctx, next){
   let articleController = new ArticleController();
   await articleController.getList(ctx);
 });
-
-
-
-
 module.exports = router;
