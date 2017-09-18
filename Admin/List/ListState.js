@@ -1,7 +1,7 @@
 import { observable } from 'mobx';
 import ajax from '../Apis'; //经过封装的加强型 ajax 函数
 
-class LoginState {
+class ListState {
   @observable content = "Welcome My World !";
   @observable articleList = new Array(0);
   constructor() {
@@ -13,4 +13,4 @@ class LoginState {
   }
 }
 
-export default LoginState;
+export default ListState;
