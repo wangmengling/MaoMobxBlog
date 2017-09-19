@@ -2,11 +2,14 @@ import Static from 'koa-static';
 import Send from 'koa-send';
 import Koa from 'koa';
 import path from 'path';
+import session from 'koa-session'
+import bodyParser from 'koa-bodyparser'
 const app = new Koa();
+
 // import middleware from 'koa-webpack';
 
 // x-response-time
-
+app.use(bodyParser())
 app.use(async function (ctx, next) {
   const start = new Date();
   await next();
@@ -38,6 +41,21 @@ new WebpackDevServer(webpack(config), {
 
   console.log('Listening at localhost:3000');
 });
+
+app.keys = ['davinci']
+app.use(
+  session(
+      {
+          key: 'koa:sess',
+          maxAge: 86400000,
+          overwrite: true,
+          httpOnly: true,
+          signed: true,
+          rolling: false,
+      },
+      app
+  )
+)
 
 //Api router--------
 import Router from './router/router';
