@@ -3,7 +3,6 @@ import User from '../Models/User';
 class UserController {
 
     async register(ctx) {
-        console.log('update');
         let user = new User({
             // id: 1,
             _id: '58d33395c20b8f479689d597',
@@ -18,8 +17,9 @@ class UserController {
         ctx.body = userData ? userData : 'no data';
     }
 
-    async login(obj) {
+    async login(ctx) {
         ctx.type = 'json';
+        // let { username, password } = ctx.request.body
         let user = new User(ctx.request.body);
         let ret = await user.getOne();
         let data;
