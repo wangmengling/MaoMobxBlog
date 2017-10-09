@@ -20,6 +20,7 @@ const Routes = () => (
         <DefaultLayout exact path="/" component={Home}/>
         <DefaultLayout exact path="/home" component={Home}/>
         <DefaultLayout exact path="/blogDetail" component={BlogDetail} />
+        <DefaultLayout exact path="/app" component={App} />
     </div>
   </Router>
 )

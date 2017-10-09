@@ -10,6 +10,7 @@ class HomeState {
 
   changeContent() {
     this.content = "My Name Is WangGuoZhong!";
+    console.log(this.content);
   }
 }
 

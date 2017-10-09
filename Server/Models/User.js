@@ -41,10 +41,11 @@ class User extends Base {
     }
 
     getOne() {
-        return super.getOne({
+        let user = super.getOne({
             username: this.username,
             password: this.password
         });
+        return user;
     }
 }
 

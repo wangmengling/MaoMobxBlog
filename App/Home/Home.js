@@ -16,6 +16,7 @@ class Home extends Component {
       <div className='Home'>
         {listItems}
         <DevTools />
+        <button className="buttons">asdfasdf</button>
       </div>
     );
   }

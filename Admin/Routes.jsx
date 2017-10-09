@@ -13,6 +13,15 @@ import Editor from "./Editor/"
 import DefaultLayout from "./Layout/DefaultLayout"
 import List from "./List/"
 import Detail from "./Detail"
+
+import Auth from './Stores/Auth.js'
+
+// function authRequired(nextState, replace) {
+//   if (!Auth.isLoggedIn) {
+//     replace('/admin/login');
+//   }
+// }
+
 const Routes = () => (
   <Router  history={browserHistory}>
     <div>

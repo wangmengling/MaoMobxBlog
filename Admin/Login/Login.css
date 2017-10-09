@@ -1,0 +1,44 @@
+/**************登录(WXP)****************/
+.login-box{
+    width: 60%;
+    background: #e0e8e0;
+    margin: 100px auto;
+    padding: 50px 70px;
+    box-shadow: 5px 5px #ddd;
+    border-radius: 5px;
+}
+​
+.login-title{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+​
+.input-text>label{
+    display: inline-block;
+    width: 15%;
+}
+​
+.input-text>input{
+    display: inline-block;
+    width: 80%;
+}
+.check{
+    margin-left: 15%;
+    width: 40%
+}
+.check>span{
+    margin-left: 3%;
+}
+.login-btn{
+    margin-left: 15%;
+    width: 80%;
+    font-size: 16px;
+}
+.help-block{
+    color: #e4393c;
+    height: 20px;
+    font-size: 12px;
+    margin-left: 15%;
+}

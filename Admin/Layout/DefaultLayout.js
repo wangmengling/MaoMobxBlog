@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
     Route,
+    Redirect,
     Link
 } from 'react-router-dom'
-
+// import {Redirect, Route} from 'react-router';
+import Auth from '../Stores/Auth.js'
 import Header from '../Header'
 import Footer from '../Footer'
 import './DefaultLayout.scss'
 
 const DefaultLayout = ({ component: Component, ...rest }) => {
     return (
-        <Route {...rest} render={matchProps => (
+        // call some method/function that will validate if user is logged in
+        <AuthRequiredRoute {...rest} render={matchProps => (
             <div className='LayoutRoot'>
                 <div className="LayoutHeader">
                     <Header />
@@ -49,4 +52,37 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
     )
 };
 
+
+
+
+
+/**
+ * Class representing a route that checks if user is logged in.
+ * @extends Route
+ */
+class AuthRequiredRoute extends Route{
+  /**
+   * @example <AuthRequiredRoute path="/" component={Products}>
+   */
+    render() {
+        // call some method/function that will validate if user is logged in
+        // if (!Auth.isLoggedIn) {
+        //     replace('/admin/login');
+        //   }
+        if(!Auth.isLoggedIn){
+            return <Redirect to="/admin/login"></Redirect>
+        }else{
+          return <this.props.component />
+        }
+    }
+
+    isLogin() {
+         let userName = localStorage.getItem();
+         if(!userName.length > 0) {
+             return true;
+         }else {
+             return false;
+         }
+    }
+}
 export default DefaultLayout;

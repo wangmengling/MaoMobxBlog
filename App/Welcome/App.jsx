@@ -7,10 +7,10 @@ class App extends Component {
   render() {
     return (
       <div>
+        adfadfadfadfadf
         <button onClick={this.onReset}>
           Secondssddd sssssssdsdpassed: {this.props.appState.timer}
         </button>
-        <DevTools />
       </div>
     );
   }
