@@ -31,9 +31,6 @@ class EditorContaner extends Component {
     }
 
     render() {
-        var options = {
-            lineNumbers: true,
-        };
         return (
             <div className="EditorContent">
                  <div className="left-wrapper EditorContentInput">
