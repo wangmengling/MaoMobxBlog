@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Editor from './Editor';
+import EditorContaner from './EditorContaner';
 
 export default  () => (
-    <Editor />
+    <EditorContaner />
 )

@@ -37,11 +37,6 @@ class Header extends Component {
                                 <i className="fa fa-github"></i>
                             </span>
                         </a>
-                        <a className="navbar-item is-hidden-desktop-only" href="https://twitter.com/jgthms" target="_blank">
-                            <span className="icon" style={{color: "#55acee"}}>
-                                <i className="fa fa-twitter"></i>
-                            </span>
-                        </a>
                             <Link to="/admin/editor"  className="button EditorButton"> 
                                 新增
                             </Link>

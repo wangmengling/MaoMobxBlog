@@ -4,21 +4,21 @@ import {
     Route,
     Link
 } from 'react-router-dom'
-import 'antd/dist/antd.css';
-import LzEditor from 'react-lz-editor'
+
+import { convertFromRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 var input = '## This is a header\n\n*And this is a paragraph*';
 import './Editor.scss'
-class Editor extends Component {
+
+class EditorContaner extends Component {
 
     constructor(props){
         super(props)
         this.state = {
-            title:"asdfasd",
-            htmlContent: `<h1>Yankees, Peeking at the Red Sox, Will Soon Get an Eyeful</h1>
-                      <p>Whenever Girardi stole a glance, there was rarely any good news for the Yankees. While Girardi’s charges were clawing their way to a split of their four-game series against the formidable Indians, the Boston Red Sox were plowing past the rebuilding Chicago White Sox, sweeping four games at Fenway Park.</p>`,
-            markdownContent: "## HEAD 2 \n markdown examples \n ``` welcome ```",
-            responseList: []
+            title:"",
+            htmlContent:''
           }
           this.receiveHtml=this.receiveHtml.bind(this);
           this.onChangeTitle=this.onChangeTitle.bind(this);
@@ -29,24 +29,17 @@ class Editor extends Component {
     onChangeTitle(e) {
         this.setState({title: e.target.value});
     }
-     
+
     render() {
         var options = {
             lineNumbers: true,
         };
         return (
             <div className="EditorContent">
-                
                  <div className="left-wrapper EditorContentInput">
-                    {/* <MarkdownEditor 
-                        initialContent={this.state.htmlContent} 
-                        iconsSet="font-awesome"
-                        onContentChange={this.receiveHtml}
-                    /> */}
-                    
                     <div className="InputTitle">
                         <span className="titleRight">
-                            <input placeholder="请输入标题" onChange={this.onChangeTitle}/>
+                            <input placeholder="请输入标题" value = {this.state.title} onChange={this.onChangeTitle}/>
                         </span>
                         <span className="saveButton">
                             <Link to="/admin/detail">
@@ -55,15 +48,18 @@ class Editor extends Component {
                         </span>
                     </div>
                     <div  className="InputContent">
-                        <LzEditor active={true}  importContent={this.state.htmlContent} cbReceiver={this.receiveHtml} 
-        lang="en"/>
+                        <Editor
+                            toolbarClassName="toolbarClassName"
+                            wrapperClassName="wrapperClassName"
+                            editorClassName="editorClassName"
+                            onEditorStateChange={this.receiveHtml}
+                        />
                     </div>
-                    
-        <br/>
+                <br/>
                 </div>
             </div>
         );
     }
 };
 
-export default Editor;
+export default EditorContaner;

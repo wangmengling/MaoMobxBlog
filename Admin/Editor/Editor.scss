@@ -126,12 +126,14 @@ html, body {
                 flex: 9;
                 input {
                     width: 80%;
-                    // height: 100%;
                     height: 50px;
                     font-size: 20px;
                     border-color: red;
                     border-width: 0px;
                     margin-left: 10px;
+                    border-radius:2px;
+                    border:0.5px solid #c8cccf;
+                    padding-left: 10px;
                 }
                 margin-bottom: 10px;
             }
@@ -141,6 +143,10 @@ html, body {
                 margin-bottom: 10px;
                 justify-content: flex-end;
             }
+        }
+
+        .InputContent {
+            margin: 10px;
         }
         
     }
