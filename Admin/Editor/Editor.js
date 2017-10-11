@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import  ReactMarkdown from 'react-markdown'
-import {MarkdownEditor} from 'react-markdown-editor';
 import {
     BrowserRouter as Router,
     Route,
     Link
 } from 'react-router-dom'
-// import CodeMirror from 'react-codemirror';
+import 'antd/dist/antd.css';
 import LzEditor from 'react-lz-editor'
+
 var input = '## This is a header\n\n*And this is a paragraph*';
 import './Editor.scss'
 class Editor extends Component {
@@ -62,16 +61,6 @@ class Editor extends Component {
                     
         <br/>
                 </div>
-                {/* <div className="right-wrapper">
-                    <div className="showContent">
-                        <div  className="showContentTitle">
-                            {this.state.title}
-                        </div>
-                        <div  className="showContentContent">
-                            <ReactMarkdown  source={this.state.htmlContent} theme='monokai' mode='markdown' /> 
-                        </div>
-                    </div>
-                </div> */}
             </div>
         );
     }

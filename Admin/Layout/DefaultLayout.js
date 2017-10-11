@@ -15,6 +15,7 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
     return (
         // call some method/function that will validate if user is logged in
         <AuthRequiredRoute {...rest} render={matchProps => (
+
             <div className='LayoutRoot'>
                 <div className="LayoutHeader">
                     <Header />
@@ -24,7 +25,7 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
                         <aside className="column is-2 aside hero is-fullheight is-hidden-mobile">
                             <div>
                                 <div className="main">
-                                    <div className="title">家</div>
+                                    {/* <div className="title">家</div> */}
                                     <Link to="/admin"  className="item active">
                                     <span className="icon">
                                             <i className="fa fa-home">
@@ -65,14 +66,18 @@ class AuthRequiredRoute extends Route{
    * @example <AuthRequiredRoute path="/" component={Products}>
    */
     render() {
-        // call some method/function that will validate if user is logged in
-        // if (!Auth.isLoggedIn) {
-        //     replace('/admin/login');
-        //   }
-        if(!Auth.isLoggedIn){
-            return <Redirect to="/admin/login"></Redirect>
-        }else{
-          return <this.props.component />
+        let component = super.render();
+        let {user, path} = this.props;
+        let match = this.state.match;
+        if (match) {
+            const authStore = new Auth();
+            if (authStore.isLoggedIn) {
+                return component;
+            } else {
+                return <Redirect to="/admin/login"></Redirect>;
+            }
+        } else {
+          return null;
         }
     }
 
@@ -86,3 +91,4 @@ class AuthRequiredRoute extends Route{
     }
 }
 export default DefaultLayout;
+

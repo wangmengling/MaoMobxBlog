@@ -30,7 +30,8 @@ module.exports = {
     modules: [
       path.resolve(__dirname, 'node_modules'),
       path.join(__dirname, './App'),
-      path.join(__dirname, './Admin')
+      path.join(__dirname, './Admin'),
+      path.join(__dirname, './static')
     ]
   },
   module: {

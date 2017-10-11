@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
 import './Home.scss'
+import {withRouter} from 'react-router-dom'
+import {observer} from 'mobx-react';
+
+@observer
 class Home extends Component {
     render() {
         return (
@@ -15,6 +19,7 @@ class Home extends Component {
                              A simple admin template
                          </h2>
                      </div>
+                     
                  </div>
 
                  <div className="hero-foot">
@@ -43,4 +48,4 @@ class Home extends Component {
     }
 };
 
-export default Home;
+export default withRouter(Home);

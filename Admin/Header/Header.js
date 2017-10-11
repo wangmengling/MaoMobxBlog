@@ -1,11 +1,23 @@
 import React, { Component } from 'react'
+import Auth from '../Stores/Auth.js';
 import {
     BrowserRouter as Router,
     Route,
+    withRouter,
     Link
 } from 'react-router-dom'
 import './Header.scss'
 class Header extends Component {
+    constructor(props){
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+    
+    logout() {
+        const auth = new Auth();
+        auth.logout();
+        this.props.history.push('/admin/login');
+    }
     render() {
         return (
             <div className="FooterContent">
@@ -17,9 +29,7 @@ class Header extends Component {
                     </div>
 
                     <span className="navbar-burger burger">
-                        <span className="nav-item">dasdfasdfasdf</span>
-                        <span className="nav-item">dasdfasdfasf</span>
-                        <span className="nav-item">dasdfasdfasdf</span>
+                        
                     </span>
                     <div className="navbar-end NavBarLeft">
                         <a className="navbar-item is-hidden-desktop-only" href="https://github.com/jgthms/bulma" target="_blank">
@@ -35,6 +45,12 @@ class Header extends Component {
                             <Link to="/admin/editor"  className="button EditorButton"> 
                                 新增
                             </Link>
+
+                            <div>
+                                <a onClick = {this.logout}  className="button EditorButton"> 
+                                    退出
+                                </a>
+                            </div>
                     </div>
                 </nav>
             </div>
@@ -42,4 +58,4 @@ class Header extends Component {
     }
 };
 
-export default Header;
+export default withRouter(Header);

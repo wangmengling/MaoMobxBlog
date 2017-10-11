@@ -5,7 +5,8 @@ import {
   Link,
   IndexRoute,
   Switch,
-  browserHistory
+  browserHistory,
+  hashRouter
 } from 'react-router-dom'
 import Login from "./Login"
 import Home from "./Home/Home"
@@ -23,7 +24,7 @@ import Auth from './Stores/Auth.js'
 // }
 
 const Routes = () => (
-  <Router  history={browserHistory}>
+  <Router  history={hashRouter}>
     <div>
         <DefaultLayout exact path="/admin/editor" component={Editor}/>
         <DefaultLayout exact path="/admin" component={Home}/>

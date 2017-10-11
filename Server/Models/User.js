@@ -23,6 +23,7 @@ class User extends Base {
             this.email = obj.email || '';
             // 用户手机号
             this.phone = obj.phone || '';
+            this.token = obj.token || '';
         }
         console.log(this);
         // 存储用主要键名，相当于表名

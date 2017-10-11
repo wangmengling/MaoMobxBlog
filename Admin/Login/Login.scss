@@ -1,18 +1,107 @@
-.LoginScss {
-    display: flex;
+input:-webkit-autofill {  
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;  
+} 
+.Login {
     height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    .Login {
-        flex: 1;
-    };
-    .checkbox {
-        align-items: stretch;
-        width: 150px;
-        .CheckboxInput {
-            margin-right: 10px;
-        }
+    .LoginImage {
+        // display: flex;
+        float: left;
+        height: 100%;
+        width: 100%;
+        background-image:  url('/Image/adminBack.jpg'); 
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        filter: blur(1px);
     }
-    .corner-icon {
-        align-self: center;
+    .LoginContent {
+        position:absolute;
+        background-color: #ffffff;
+        width: 600px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        align-items: center;
+        flex-direction: column;
+        .LoginTitle {
+            font-family:"PingFang SC";
+            font-size: 24px;
+            justify-content: center;
+            flex: 2;
+            align-items: center;
+            display: flex;
+        }
+
+        .LoginForm {
+            justify-content: center;
+            flex: 7;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            .FormHorizontal {
+                width: 100%;
+                height: 100%;
+                justify-content: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .FormGroup {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    .login-btn {
+                        width: 40%;
+                    }
+                }
+                .Remember {
+                    justify-content: flex-start;
+                    width: 40%;
+                    input {
+                        margin-right: 10px;
+                    }
+                }
+                .InputText {
+                    label {
+                        flex: 3;
+                        text-align: right;
+                        margin-right: 10px;
+                        color: #333333;
+                        align-self: center;
+                        font-size: 14px;
+                    }
+                    .form-control {
+                        flex: 4;
+                        -web-kit-appearance:none;
+                        -moz-appearance: none;
+                        appearance: none;
+                        // font-size:1.4em;
+                        height:2.7em;
+                        border-radius:2px;
+                        border:0.5px solid #c8cccf;
+                        color:#6a6f77;
+                        outline:0;
+                        margin-bottom: 10px;
+                        display:block;
+                        background: #ffffff;
+                        height: 40px;
+                    }
+                    .help-block {
+                        flex: 3;
+                        text-align: left;
+                        margin-left: 10px;
+                        color: #E61414;
+                        align-self: center;
+                        font-size: 14px;
+                    }
+                }
+            }
+            
+        }
     }
 }
