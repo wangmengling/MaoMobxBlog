@@ -21,12 +21,12 @@ router.get('/api/v1/user/register',async function (ctx, next){
   await userController.register(ctx);
 });
 
-router.get('/api/v1/article/addArticle',async function (ctx, next){
+router.post('/api/v1/article/addArticle',tokenContent,async function (ctx, next){
   let articleController = new ArticleController();
   await articleController.addArticle(ctx);
 });
 
-router.get('/api/v1/article/getList',tokenContent,async function (ctx, next){
+router.post('/api/v1/article/getList',async function (ctx, next){
   let articleController = new ArticleController();
   await articleController.getList(ctx);
 });
