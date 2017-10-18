@@ -4,6 +4,8 @@ import ajax from '../Apis'; //经过封装的加强型 ajax 函数
 class ListStore {
   @observable content = "Welcome My World !";
   @observable articleList = new Array(0);
+  @observable pageIndex = 0;
+
   constructor() {
     
   }
@@ -20,7 +22,7 @@ class ListStore {
         method: 'POST',
         data:{
           token: token,
-          pageIndex: 0,
+          pageIndex: this.pageIndex,
           num: 10
         }
     }).then((response) => {

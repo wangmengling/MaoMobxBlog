@@ -34,6 +34,7 @@ class EditorContaner extends Component {
    }
 
     componentWillMount(){
+        this.props.store.statusCode = 0;
         this.addAutoRun()
     }
     receiveHtml(content) {
@@ -64,7 +65,6 @@ class EditorContaner extends Component {
                  <div className="left-wrapper EditorContentInput">
                     <div className="InputTitle">
                         <span className="titleRight">
-                            {this.props.store.tipMessage}
                             <input placeholder="请输入标题" value = {this.state.title} onChange={this.onChangeTitle}/>
                         </span>
                         <span className="saveButton">
