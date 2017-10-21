@@ -31,5 +31,10 @@ router.post('/api/v1/article/getList',async function (ctx, next){
   await articleController.getList(ctx);
 });
 
+router.post('/api/v1/article/deleteArticle',async function (ctx, next){
+  let articleController = new ArticleController();
+  await articleController.deleteArticle(ctx);
+});
+
 
 module.exports = router;

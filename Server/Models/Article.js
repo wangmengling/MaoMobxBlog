@@ -3,7 +3,11 @@
  * @author dongkunshan
  */
 
-import Base from './Base';
+import Base    from './Base';
+import mongodb from 'mongo-db';
+import config  from '../config/db.config';
+const connectionStr = `mongodb://${config.mongodb.user}:${config.mongodb.pass}`
++ `@${config.mongodb.ip}:${ config.mongodb.port}/${config.mongodb.db}`;
 
 class Article extends Base {
     constructor(obj) {
@@ -44,6 +48,24 @@ class Article extends Base {
                 $regex: /^em/
             }
         });
+    }
+
+
+    // 通用获取指定数据
+    async getList(obj) {
+        console.log('base getList');
+        let ret;
+        try {
+            // get by query
+            const db  = new mongodb(connectionStr, this.storekey, true);
+            ret = await db.find(obj.query, {}, (obj.pageIndex) * obj.pageSize, obj.pageSize, {
+                time: -1
+            });
+        }
+        catch (e) {
+            return ret;
+        }
+        return ret;
     }
 
     getOne() {

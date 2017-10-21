@@ -120,6 +120,20 @@ class Base {
         }
         return ret;
     }
+
+    // 通用获取指定数据
+    async count() {
+        let ret;
+        try {
+            // get by query
+            const db  = new mongodb(connectionStr, this.storekey, true);
+            ret = await db.count();
+        }
+        catch (e) {
+            return ret;
+        }
+        return ret;
+    }
 }
 
 export default Base;

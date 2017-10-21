@@ -5,6 +5,7 @@ class ArticleController {
     async addArticle(ctx) {
         ctx.type = 'json';
         let { title, content } = ctx.request.body;
+        let time = Date.parse(new Date()) ;
         let article = new Article({
             username: 'wangguozhong',
             // 简介
@@ -12,7 +13,7 @@ class ArticleController {
             // 内容
             content: content,
             // 时间
-            time : '1496577824',
+            time : time,
             // 标题
             title: title,
             category: 'React, Koa',
@@ -28,10 +29,27 @@ class ArticleController {
     }
 
     async  getList(ctx) {
-        let { pageIndex, num } = ctx.request.body;
+        let { pageIndex, pageSize } = ctx.request.body;
         let article = new Article();
-        let articleData = await article.getAll();
-        ctx.body = articleData ? articleData : 'no data';
+        let obj = {pageIndex:pageIndex,pageSize:pageSize};
+        let articleData = await article.getList(obj);
+
+        let count = await article.count();
+        let data;
+        if (articleData) {
+            data = {
+                code: 0,
+                data: {pageTotal:count/pageSize,list:articleData},
+                msg: "获取成功"
+            };
+        }
+        else {
+            data = {
+                code: 1,
+                msg: "获取失败"
+            };
+        }
+        ctx.body = data; 
     }
 
     async  getOne(ctx) {
@@ -51,6 +69,28 @@ class ArticleController {
             data = {
                 code: 1,
                 msg: "获取失败"
+            };
+        }
+        ctx.body = data; 
+    }
+
+    async deleteArticle(ctx) {
+        ctx.type = 'json';
+        let params = {_id:ctx.request.body.articleId};
+        let article = new Article(params);
+        let ret = await article.del();
+        let data;
+        if (ret) {
+            ctx.session.article = ret;
+            data = {
+                code: 200,
+                msg: "删除成功"
+            };
+        }
+        else {
+            data = {
+                code: 0,
+                msg: "删除失败"
             };
         }
         ctx.body = data; 

@@ -120,6 +120,7 @@ class Pager extends React.Component {
 		const delta = this.props.total - start;
 		const end = start + ((delta > blocks.size) ? blocks.size : delta);
 		console.log([start + TITLE_SHIFT, end + TITLE_SHIFT]);
+		console.log(blocks);
 		return [start + TITLE_SHIFT, end + TITLE_SHIFT];
 	}
 
@@ -168,9 +169,8 @@ class Pager extends React.Component {
 	}
 
 	handlePageChanged(num) {
-		const handler = this.props.onPageChanged;
 		console.log(num);
-		console.log("-----");
+		const handler = this.props.onPageChanged;
 		if (handler) handler(num);
 	}
 
@@ -187,20 +187,25 @@ class Pager extends React.Component {
 			const current = num - TITLE_SHIFT;
 			const onClick = this.handlePageChanged.bind(this, current);
 			const isActive = (this.props.current === current);
+			let className = null
+			if (isActive) {
+				className = "pagination-link is-current";
+			}else {
+				className = "pagination-link";
+			}
 			return (
 				<Page
 					key={idx}
 					index={idx}
 					isActive={isActive}
-					className="pagination-link is-current"
+					className={className}
 					onClick={onClick}
 					content={num}
 				/>
 			);
 		});
 	}
-
-
+	
 	render() {
 		const titles = this.getTitles.bind(this);
 		let className = "pagination";
@@ -220,51 +225,64 @@ class Pager extends React.Component {
 		}else {
 			lastView = null;
 		}
+
+		const blocks = this.calcBlocks();
 		return (
 			<nav className="pagination is-centered" role="navigation" aria-label="pagination">
 				<a className="pagination-previous" isDisabled={this.isPrevDisabled()} onClick={this.handlePreviousPage}>Previous</a>
 				<a className="pagination-next" isDisabled={this.isNextDisabled()} onClick={this.handleNextPage}>Next page</a>
 				<ul className="pagination-list">
+					{blocks.current  > 0 &&
 					<Page
-						className="btn-first-page"
-						key="btn-first-page"
-						isDisabled={this.isPrevDisabled()}
-						onClick={this.handleFirstPage}
-						content={titles('first')}
-					/>
-
-					{/* <Page
-						className="btn-prev-page"
-						key="btn-prev-page"
-						isDisabled={this.isPrevDisabled()}
-						onClick={this.handlePreviousPage}
-					>{titles('prev')}</Page> */}
-
-					{/* <Page
-						className="btn-prev-more"
 						key="btn-prev-more"
 						isHidden={this.isPrevMoreHidden()}
 						onClick={this.handleMorePrevPages}
-					>{titles('prevSet')}</Page> */}
-					<li><span className="pagination-ellipsis">&hellip;</span></li>
+						content={titles('prevSet')}
+					></Page>
+					}
+					{blocks.current  > 0 &&
+						<Page
+							key="btn-first-page"
+							isDisabled={this.isPrevDisabled()}
+							onClick={this.handleFirstPage}
+							content={titles('first')}
+						/>
+					}
+					
+					{blocks.current  > 0 &&
+						<li><span className="pagination-ellipsis">&hellip;</span></li>
+					}
 
+					
+
+					 
+					
 					{this.renderPages(this.visibleRange())}
 
-					{/* <Page
-						className="btn-next-more"
+					
+					
+					
+					{blocks.current+1  < blocks.total &&
+						<li><span className="pagination-ellipsis">&hellip;</span></li>
+					}
+
+					{blocks.current +1 < blocks.total &&
+						<Page
+							key="btn-last-page"
+							isDisabled={this.isNextDisabled()}
+							onClick={this.handleLastPage}
+							content={titles('last')}
+						/>
+					}
+
+					{blocks.current+1  < blocks.total &&	
+					<Page
 						key="btn-next-more"
 						isHidden={this.isNextMoreHidden()}
 						onClick={this.handleMoreNextPages}
-					>{titles('nextSet')}</Page>
-
-					<Page
-						className="btn-next-page"
-						key="btn-next-page"
-						isDisabled={this.isNextDisabled()}
-						onClick={this.handleNextPage}
-					>{titles('next')}</Page> */}
-					<li><span className="pagination-ellipsis">&hellip;</span></li>
-					{lastView}
+						content={titles('nextSet')}
+					></Page>
+					}
 				</ul>
 			</nav>
 		);
@@ -289,13 +307,13 @@ Pager.defaultProps = {
 const Page = (props) => {
 	if (props.isHidden) return null;
 
-	const baseCss = props.className ? `${props.className} ` : '';
+	const baseCss = props.className ? `${props.className} ` : 'pagination-link';
 	const fullCss = `${baseCss}${props.isActive ? ' active' : ''}${props.isDisabled ? ' disabled' : ''}`;
 
 	return (
 		// className={fullCss}
 		<li key={props.key}>
-			<a onClick={props.onClick} className="pagination-link" aria-label='Goto page {props.children}'>{props.content}</a>
+			<a onClick={props.onClick} className={baseCss} aria-label='Goto page {props.children}' >{props.content}</a>
 		</li>
 	);
 };

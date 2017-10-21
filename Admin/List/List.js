@@ -13,40 +13,31 @@ class List extends Component {
 
     constructor(props) {
 		super(props);
-
 		this.handlePageChanged = this.handlePageChanged.bind(this);
-
-		this.state = {
-			total:       11,
-			current:     7,
-            visiblePage: 3,
-            title: ""
-        };
-        this.props.store.getArticleList()
+        // this.deleteArticle = this.deleteArticle.bind(this);
+        this.props.store.getArticleList(this.props.store.pageIndex)
 	}
 
 	handlePageChanged(newPage) {
-        this.setState({ current : newPage });
-        console.log(newPage);
-	}
+        this.props.store.getArticleList(newPage)
+    }
+    
+    deleteArticle(articleModel) {
+        this.props.store.deleteArticle(articleModel._id);
+    }
 
+    componentWillMount(){
+        this.props.store.deleteData = null;
+        this.addAutoRun()
+    }
 
-
-   componentWillMount(){
-        
-   }
-
-   nextPage(){
-
-   }
-
-   prePage(){
-
-   }
-
-   page(){
-
-   }
+    addAutoRun(){
+        autorun(() => {
+            if (this.props.store.deleteData.code == 200) {
+                this.props.store.getArticleList(this.props.store.pageIndex)
+            }
+        })
+    }
      
     render() {
         return (
@@ -67,17 +58,17 @@ class List extends Component {
                     </thead>
                     <tbody>
                         { this.props.store.articleList.map(
-                            (atricleModel, idx) => <TableTr atricleModel={atricleModel} key={idx} />
+                            (articleModel, idx) => <TableTr articleModel={articleModel} key={idx} onClick={this.deleteArticle.bind(this,articleModel)}/>
                         ) }
                     </tbody>
                     </table>
                 </div>
                 <div>
                     <Pager
-                        total={this.state.total}
-                        current={this.state.current}
-                        visiblePages={this.state.visiblePage}
-                        titles={{ first: '1', last: this.state.total }}
+                        total={this.props.store.pageTotal}
+                        current={this.props.store.pageIndex}
+                        visiblePages={this.props.store.pageSize}
+                        titles={{ first: '1', last: this.props.store.pageTotal,prevSet:"|<" ,nextSet:">|"}}
                         className="pagination is-centered"
                         onPageChanged={this.handlePageChanged}
                     />
@@ -90,27 +81,33 @@ class List extends Component {
 export default List;
 
 
-const TableTr = (atricleModel,key) => {
-    console.log(atricleModel);
-        return (
+const TableTr = (props) => {
+    let date = new Date();
+    let articleModel = props.articleModel;
+    date.setTime(articleModel.time);
+    return (
             <tr>
             <td>
                 <Link to="/Admin/Detail" >
-                    {atricleModel.atricleModel.title}
+                    {articleModel.title}
                 </Link>
             </td>
             <td>
-                    {atricleModel.atricleModel.time}
+                    {date.toLocaleDateString()}
             </td>
             <td>
-                {atricleModel.atricleModel.view}
+                {articleModel.view}
             </td>
             <td>
-                {atricleModel.atricleModel.tag}
+                {articleModel.tag}
             </td>
             <td>
                 <Link to="/Admin/Detail" >
                     编辑
+                </Link>
+                &nbsp;&nbsp;
+                <Link to="#" onClick={props.onClick}>
+                    删除
                 </Link>
             </td>
             </tr>
