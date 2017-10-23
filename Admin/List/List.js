@@ -88,7 +88,10 @@ const TableTr = (props) => {
     return (
             <tr>
             <td>
-                <Link to="/Admin/Detail" >
+                <Link to="/Admin/Detail" to={{
+                    pathname: '/Admin/Detail',
+                    state: { articleModel: articleModel }
+                }} >
                     {articleModel.title}
                 </Link>
             </td>
