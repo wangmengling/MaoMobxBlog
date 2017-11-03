@@ -12,10 +12,8 @@ class Auth {
     }
 
     constructor(){
-        const token = localStorage.getItem('token');
-        if (token) {
-            this.user = jwt.verify(token, JWT_SECRET);
-        }
+        // const token = localStorage.getItem('token');
+        this.user = localStorage.getItem('user');
     }
 
     logout() {

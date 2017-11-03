@@ -27,6 +27,7 @@ class LoginStore {
     }).then((response) => {
       if(response.data.token){
         localStorage.setItem('token',response.data.token);
+        localStorage.setItem('user',response.data);
         this.isLoginIn = true;
       }
       this.tipMessage = response.data.msg;
