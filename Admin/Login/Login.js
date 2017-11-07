@@ -19,7 +19,10 @@ class Login extends Component {
     }
 
     componentWillMount(){
-        
+        let AUTH_TOKEN = localStorage.getItem('token');
+        if (AUTH_TOKEN) {
+            this.props.history.push('/admin');
+        }
     }
     //监听input中的数据，保存到state中
     changeUsername(e){

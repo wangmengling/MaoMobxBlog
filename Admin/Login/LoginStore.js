@@ -25,6 +25,7 @@ class LoginStore {
           password: passWord
         }
     }).then((response) => {
+      console.log(response);
       if(response.data.code == 1){
         localStorage.setItem('token',response.data.data.token);
         localStorage.setItem('user',response.data);

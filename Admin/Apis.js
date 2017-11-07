@@ -2,9 +2,9 @@
  * Created by kee on 15/10/21.
  */
 import axios from 'axios';
-const host = 'HTTP://localhost:3001' ;
+// const host = 'HTTP://localhost:3001' ;
 
-// const host = 'http://localhost:3002' ;
+const host = 'http://localhost:3002' ;
 
 export default function apis({ url, method, ...others }) {
   // console.log(host + url)

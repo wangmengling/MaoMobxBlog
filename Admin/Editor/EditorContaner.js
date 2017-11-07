@@ -28,28 +28,21 @@ class EditorContaner extends Component {
         this.state = {
             title:"",
             htmlContent: EditorState.createEmpty(),
-<<<<<<< HEAD
-            summary:""
-=======
+            summary:"",
             markdownContent: ""
->>>>>>> 090b73996b18d24b9a30b38e223743a7b96384d2
         }
         this.receiveHtml = this.receiveHtml.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.commitAction = this.commitAction.bind(this);
-<<<<<<< HEAD
         this.onChangeSummary = this.onChangeSummary.bind(this);
-=======
         this.receiveMarkdown = this.receiveMarkdown.bind(this);
-        
->>>>>>> 090b73996b18d24b9a30b38e223743a7b96384d2
    }
 
     componentWillMount(){
         this.props.store.statusCode = 0;
-        console.log(this.props.articleModel.location.state.articleModel);
+        // console.log(this.props.articleModel.location.state.articleModel);
         // htmlToDraft(this.props.articleModel.location.state.articleModel.content);
-        if (this.props.articleModel.location.state) {
+        if (this.props.articleModel) {
             this.setState({
                 markdownContent:this.props.articleModel.location.state.articleModel.content,
                 title:this.props.articleModel.location.state.articleModel.title

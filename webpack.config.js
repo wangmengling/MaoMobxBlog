@@ -4,16 +4,16 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'eval',
   entry: {
-      'app':[
-            'react-hot-loader/patch',
-            'webpack-dev-server/client?http://localhost:3000',
-            'webpack/hot/only-dev-server',
-            './App/index',
-        ],
+      // 'app':[
+      //       'react-hot-loader/patch',
+      //       'webpack-dev-server/client?http://localhost:3001',
+      //       'webpack/hot/only-dev-server',
+      //       './App/index',
+      //   ],
         'admin':[
-            'react-hot-loader/patch',
-            'webpack-dev-server/client?http://localhost:3000',
-            'webpack/hot/only-dev-server',
+            // 'react-hot-loader/patch',
+            // 'webpack-dev-server/client?http://localhost:3001',
+            // 'webpack/hot/only-dev-server',
             './Admin/Index'
         ]
   } , 
