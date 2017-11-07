@@ -22,7 +22,7 @@ class ListStore {
     //发送摘苹果请求
     const token = localStorage.getItem('token');
     ajax({
-        url: '/api/v1/article/getList',
+        url: '/api/v1/admin/article/list',
         method: 'POST',
         data:{
           token: token,
@@ -33,6 +33,7 @@ class ListStore {
         this.pageIndex = pageIndex;
         this.articleList = response.data.data.list;
         this.pageTotal = response.data.data.pageTotal;
+        console.log(this.pageTotal);
     })
     .catch((error) => {
        
@@ -44,10 +45,9 @@ class ListStore {
     //发送摘苹果请求
     const token = localStorage.getItem('token');
     ajax({
-        url: '/api/v1/article/deleteArticle',
+        url: '/api/v1/admin/article/delete',
         method: 'POST',
         data:{
-          token: token,
           articleId:id
         }
     }).then((response) => {

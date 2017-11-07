@@ -8,10 +8,12 @@ import {
 
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor} from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
+// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { Button } from 'antd';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
+import LzEditor from 'react-lz-editor'
+import antdScss from 'antd/dist/antd.css';
 
 import {observer} from 'mobx-react';
 import {autorun} from 'mobx';
@@ -26,20 +28,41 @@ class EditorContaner extends Component {
         this.state = {
             title:"",
             htmlContent: EditorState.createEmpty(),
+<<<<<<< HEAD
             summary:""
+=======
+            markdownContent: ""
+>>>>>>> 090b73996b18d24b9a30b38e223743a7b96384d2
         }
         this.receiveHtml = this.receiveHtml.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.commitAction = this.commitAction.bind(this);
+<<<<<<< HEAD
         this.onChangeSummary = this.onChangeSummary.bind(this);
+=======
+        this.receiveMarkdown = this.receiveMarkdown.bind(this);
+        
+>>>>>>> 090b73996b18d24b9a30b38e223743a7b96384d2
    }
 
     componentWillMount(){
         this.props.store.statusCode = 0;
+        console.log(this.props.articleModel.location.state.articleModel);
+        // htmlToDraft(this.props.articleModel.location.state.articleModel.content);
+        if (this.props.articleModel.location.state) {
+            this.setState({
+                markdownContent:this.props.articleModel.location.state.articleModel.content,
+                title:this.props.articleModel.location.state.articleModel.title
+            })
+        }
         this.addAutoRun()
     }
     receiveHtml(content) {
         this.setState({htmlContent: content});
+    }
+
+    receiveMarkdown(content) {
+        this.setState({markdownContent: content});
     }
     onChangeTitle(e) {
         this.setState({title: e.target.value});
@@ -57,7 +80,7 @@ class EditorContaner extends Component {
     addAutoRun(){
         autorun(() => {
             console.log(this.props.store.statusCode)
-            if (this.props.store.statusCode == 200) {
+            if (this.props.store.statusCode == 1) {
                 this.props.history.push('/admin/list');
             }
         })
@@ -67,6 +90,7 @@ class EditorContaner extends Component {
     render() {
         return (
             <div className="EditorContent">
+                <style dangerouslySetInnerHTML={{ __html: antdScss }} />
                  <div className="left-wrapper EditorContentInput">
                     <div className="InputTitle">
                         <span className="titleRight">
@@ -81,13 +105,32 @@ class EditorContaner extends Component {
                         {/* <textarea placeholder="请输入简介" value = {this.state.summary} onChange={this.onChangeSummary}/> */}
                     </div>
                     <div  className="InputContent">
-                        <Editor
+                        {/* <Editor
                             toolbarClassName="toolbarClassName"
                             wrapperClassName="wrapperClassName"
                             editorClassName="editorClassName"
                             editorState={this.state.htmlContent}
                             onEditorStateChange={this.receiveHtml}
+                        /> */}
+                        {/* <LzEditor active={true} importContent={this.state.markdownContent} cbReceiver={this.receiveHtml}/> */}
+                        <LzEditor
+                            active={true}
+                            importContent={this.state.markdownContent}
+                            cbReceiver={this.receiveMarkdown}
+                            image={false}
+                            video={false}
+                            audio={false}
+                            convertFormat="html"
                         />
+                        {/* <LzEditor
+                            active={true}
+                            importContent={this.state.markdownContent}
+                            cbReceiver={this.receiveMarkdown}
+                            image={false}
+                            video={false}
+                            audio={false}
+                            convertFormat="markdown"
+                        /> */}
                     </div>
                 <br/>
                 </div>
