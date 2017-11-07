@@ -10,7 +10,7 @@ class EditorStore {
     
   }
 
-  @action  addContent(title,content) {
+  @action  addContent(title,summary,content) {
     console.log(title);
     console.log(content);
     //发送摘苹果请求

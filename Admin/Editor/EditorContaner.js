@@ -25,12 +25,13 @@ class EditorContaner extends Component {
         super(props)
         this.state = {
             title:"",
-            htmlContent: EditorState.createEmpty()
+            htmlContent: EditorState.createEmpty(),
+            summary:""
         }
         this.receiveHtml = this.receiveHtml.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.commitAction = this.commitAction.bind(this);
-        
+        this.onChangeSummary = this.onChangeSummary.bind(this);
    }
 
     componentWillMount(){
@@ -44,9 +45,13 @@ class EditorContaner extends Component {
         this.setState({title: e.target.value});
     }
 
+    onChangeSummary(e) {
+        this.setState({summary: e.target.value});
+    }
+
     commitAction() {
         const content = draftToHtml(convertToRaw(this.state.htmlContent.getCurrentContent()));
-        this.props.store.addContent(this.state.title,content);
+        this.props.store.addContent(this.state.title,this.state.summary,content);
     }
 
     addAutoRun(){
@@ -70,6 +75,10 @@ class EditorContaner extends Component {
                         <span className="saveButton">
                             <button className="button" onClick={this.commitAction}>保存</button>
                         </span>
+                    </div>
+                    <div className="Summary">
+                    <input placeholder="请输入简介" value = {this.state.summary} onChange={this.onChangeSummary}/>
+                        {/* <textarea placeholder="请输入简介" value = {this.state.summary} onChange={this.onChangeSummary}/> */}
                     </div>
                     <div  className="InputContent">
                         <Editor
