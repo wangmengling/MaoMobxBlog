@@ -11,11 +11,9 @@ class EditorStore {
   }
 
   @action  addContent(title,content) {
-    console.log(title);
-    console.log(content);
     //发送摘苹果请求
     ajax({
-        url: '/api/v1/article/addArticle',
+        url: '/api/v1/admin/article/add',
         method: 'POST',
         data:{
           title: title,
@@ -23,10 +21,11 @@ class EditorStore {
         }
     }).then((response) => {
       console.log(response);
-      this.statusCode = response.status;
-      this.tipMessage = response.statusText;
+      this.statusCode = response.data.code;
+      this.tipMessage = response.data.message;
     })
     .catch((error) => {
+      console.log(error);
       this.statusCode = error.code;
       this.tipMessage = error.msg;
     });

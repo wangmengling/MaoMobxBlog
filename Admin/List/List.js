@@ -33,7 +33,7 @@ class List extends Component {
 
     addAutoRun(){
         autorun(() => {
-            if (this.props.store.deleteData.code == 200) {
+            if (this.props.store.deleteData != null && this.props.store.deleteData.code == 1) {
                 this.props.store.getArticleList(this.props.store.pageIndex)
             }
         })
@@ -97,6 +97,7 @@ const TableTr = (props) => {
             </td>
             <td>
                     {date.toLocaleDateString()}
+                    {/* {articleModel.time} */}
             </td>
             <td>
                 {articleModel.view}
@@ -105,7 +106,11 @@ const TableTr = (props) => {
                 {articleModel.tag}
             </td>
             <td>
-                <Link to="/Admin/Detail" >
+                <Link to="/admin/editor" 
+                to={{
+                    pathname: '/admin/editor',
+                    state: { articleModel: articleModel }
+                }}>
                     编辑
                 </Link>
                 &nbsp;&nbsp;

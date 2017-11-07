@@ -55,6 +55,11 @@ module.exports = {
       }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: "file-loader"
-      }],
+      }
+      // ,
+      // { test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, 
+      //   loader: 'url-loader?limit=50000&name=[path][name].[ext]'
+      // }
+    ],
   }
 };

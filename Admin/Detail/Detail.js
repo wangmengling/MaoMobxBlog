@@ -5,13 +5,12 @@ import {
     Link
 } from 'react-router-dom'
 import './Detail.scss'
+import { EditorState, ContentState } from 'draft-js';
+import htmlToDraft from 'html-to-draftjs';
 class Detail extends Component {
 
     componentWillMount(){
-        console.log("------");
-        console.log(this.props.articleModel);
         console.log(this.props.articleModel.location.state.articleModel);
-        console.log("------");
     }
 
     render() {
@@ -24,16 +23,15 @@ class Detail extends Component {
                         
                         <div className="DetailEditButton">
                             <Link to="/admin/editor">
-                            <span className="button">
-                                编辑
+                                <span className="button">
+                                    编辑
                                 </span>
                             </Link>
                         </div>
-                        
                     </div>
                     <div className="DetailContentShow"> 
                         <div className="content">
-                            {this.props.articleModel.location.state.articleModel.content}
+                        <div dangerouslySetInnerHTML={{__html: this.props.articleModel.location.state.articleModel.content}}/>
                         </div>
                     </div>
                     <div className="DetailContentBottom ">
