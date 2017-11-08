@@ -11,7 +11,7 @@ module.exports = {
       //       './App/index',
       //   ],
         'admin':[
-            // 'react-hot-loader/patch',
+            'react-hot-loader/patch',
             // 'webpack-dev-server/client?http://localhost:3001',
             // 'webpack/hot/only-dev-server',
             './Admin/Index'

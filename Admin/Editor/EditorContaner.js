@@ -9,7 +9,7 @@ import {
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor} from 'react-draft-wysiwyg';
 // import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Button } from 'antd';
+import { Button,Input } from 'antd';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import LzEditor from 'react-lz-editor'
@@ -42,12 +42,12 @@ class EditorContaner extends Component {
         this.props.store.statusCode = 0;
         // console.log(this.props.articleModel.location.state.articleModel);
         // htmlToDraft(this.props.articleModel.location.state.articleModel.content);
-        if (this.props.articleModel) {
-            this.setState({
-                markdownContent:this.props.articleModel.location.state.articleModel.content,
-                title:this.props.articleModel.location.state.articleModel.title
-            })
-        }
+        // if (this.props.articleModel) {
+        //     this.setState({
+        //         markdownContent:this.props.articleModel.location.state.articleModel.content,
+        //         title:this.props.articleModel.location.state.articleModel.title
+        //     })
+        // }
         this.addAutoRun()
     }
     receiveHtml(content) {
@@ -94,7 +94,8 @@ class EditorContaner extends Component {
                         </span>
                     </div>
                     <div className="Summary">
-                    <input placeholder="请输入简介" value = {this.state.summary} onChange={this.onChangeSummary}/>
+                        <Input.TextArea placeholder="请输入简介" rows={4} className="SummaryTextArea" value = {this.state.summary} onChange={this.onChangeSummary}/>
+                    {/* <input placeholder="请输入简介" value = {this.state.summary} onChange={this.onChangeSummary}/> */}
                         {/* <textarea placeholder="请输入简介" value = {this.state.summary} onChange={this.onChangeSummary}/> */}
                     </div>
                     <div  className="InputContent">
