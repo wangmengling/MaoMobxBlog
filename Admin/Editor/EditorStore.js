@@ -19,6 +19,32 @@ class EditorStore {
         method: 'POST',
         data:{
           title: title,
+          summary: summary,
+          content: content
+        }
+    }).then((response) => {
+      console.log(response);
+      this.statusCode = response.data.code;
+      this.tipMessage = response.data.message;
+    })
+    .catch((error) => {
+      console.log(error);
+      this.statusCode = error.code;
+      this.tipMessage = error.msg;
+    });
+  }
+
+  @action  updateContent(articleId,title,summary,content) {
+    console.log(title);
+    console.log(content);
+    //发送摘苹果请求
+    ajax({
+        url: '/api/v1/admin/article/update',
+        method: 'POST',
+        data:{
+          _id:articleId,
+          title: title,
+          summary: summary,
           content: content
         }
     }).then((response) => {

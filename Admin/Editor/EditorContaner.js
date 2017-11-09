@@ -29,7 +29,8 @@ class EditorContaner extends Component {
             title:"",
             htmlContent: EditorState.createEmpty(),
             summary:"",
-            markdownContent: ""
+            markdownContent: "",
+            articleModel:{}
         }
         this.receiveHtml = this.receiveHtml.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
@@ -42,12 +43,14 @@ class EditorContaner extends Component {
         this.props.store.statusCode = 0;
         // console.log(this.props.articleModel.location.state.articleModel);
         // htmlToDraft(this.props.articleModel.location.state.articleModel.content);
-        // if (this.props.articleModel) {
-        //     this.setState({
-        //         markdownContent:this.props.articleModel.location.state.articleModel.content,
-        //         title:this.props.articleModel.location.state.articleModel.title
-        //     })
-        // }
+        if (this.props.articleModel.location.state) {
+            this.setState({
+                markdownContent:this.props.articleModel.location.state.articleModel.content,
+                title:this.props.articleModel.location.state.articleModel.title,
+                articleModel:this.props.articleModel.location.state.articleModel
+            })
+        }
+        console.log(this.props);
         this.addAutoRun()
     }
     receiveHtml(content) {
@@ -66,8 +69,11 @@ class EditorContaner extends Component {
     }
 
     commitAction() {
-        const content = draftToHtml(convertToRaw(this.state.htmlContent.getCurrentContent()));
-        this.props.store.addContent(this.state.title,this.state.summary,content);
+        if (this.state.articleModel) {
+            this.props.store.updateContent(this.state.articleModel._id,this.state.title,this.state.summary,this.state.markdownContent);
+        }else {
+            this.props.store.addContent(this.state.title,this.state.summary,this.state.markdownContent);
+        }
     }
 
     addAutoRun(){
