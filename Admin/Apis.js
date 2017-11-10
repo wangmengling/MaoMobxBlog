@@ -10,11 +10,15 @@ export default function apis({ url, method, ...others }) {
   // console.log(host + url)
   // alert(host + url)
   let AUTH_TOKEN = localStorage.getItem('token');
-  if (AUTH_TOKEN) {
-    axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-  }
+  // if (AUTH_TOKEN) {
+  //   axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+  // }else {
+  //   axios.defaults.headers.common['Authorization'] = null;
+  // }
+  // console.log(axios.defaults.headers.common['Authorization']);
   return axios({
     url: host + url,
+    headers: {'Authorization': AUTH_TOKEN},
     method: method,
     ...others
   });

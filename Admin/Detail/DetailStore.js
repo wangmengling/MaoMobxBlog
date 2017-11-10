@@ -9,3 +9,5 @@ class DetailStore {
     
   }
 }
+
+export default DetailStore;

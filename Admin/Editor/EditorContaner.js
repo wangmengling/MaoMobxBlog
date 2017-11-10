@@ -9,7 +9,7 @@ import {
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor} from 'react-draft-wysiwyg';
 // import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Button,Input } from 'antd';
+import { Button,Input,Select } from 'antd';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import LzEditor from 'react-lz-editor'
@@ -19,7 +19,7 @@ import {observer} from 'mobx-react';
 import {autorun} from 'mobx';
 var input = '## This is a header\n\n*And this is a paragraph*';
 import './Editor.scss'
-
+const Option = Select.Option;
 @observer
 class EditorContaner extends Component {
 
@@ -30,29 +30,49 @@ class EditorContaner extends Component {
             htmlContent: EditorState.createEmpty(),
             summary:"",
             markdownContent: "",
-            articleModel:{}
+            articleModel:{},
+            category:'',
+            tag:new Array(0)
         }
         this.receiveHtml = this.receiveHtml.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.commitAction = this.commitAction.bind(this);
         this.onChangeSummary = this.onChangeSummary.bind(this);
         this.receiveMarkdown = this.receiveMarkdown.bind(this);
+        this.onChangeCategory = this.onChangeCategory.bind(this);
+        this.onChangeTag = this.onChangeTag.bind(this);
    }
 
     componentWillMount(){
+        this.props.store.getTagList();
+        this.props.store.getCagegoryList();
         this.props.store.statusCode = 0;
-        // console.log(this.props.articleModel.location.state.articleModel);
-        // htmlToDraft(this.props.articleModel.location.state.articleModel.content);
-        if (this.props.articleModel.location.state) {
+        htmlToDraft(this.props.location.state.articleModel.content);
+        if (this.props.location.state) {
+            
             this.setState({
-                markdownContent:this.props.articleModel.location.state.articleModel.content,
-                title:this.props.articleModel.location.state.articleModel.title,
-                articleModel:this.props.articleModel.location.state.articleModel
-            })
+                markdownContent:this.props.location.state.articleModel.content,
+                title:this.props.location.state.articleModel.title,
+                summary:this.props.location.state.articleModel.summary,
+                category:this.props.location.state.articleModel.category,
+                articleModel:this.props.location.state.articleModel
+            }, () => {
+                let tags = new Array();
+                this.state.articleModel.tag.map(
+                    value => tags.push(value)
+                )
+                console.log(tags);
+                this.setState({tag:tags},()=>{
+                    console.log(this.state.tag);
+                });
+            });
+            
+              
+            
         }
-        console.log(this.props);
         this.addAutoRun()
     }
+
     receiveHtml(content) {
         this.setState({htmlContent: content});
     }
@@ -68,11 +88,38 @@ class EditorContaner extends Component {
         this.setState({summary: e.target.value});
     }
 
+    onChangeCategory(e){
+        this.setState({category:e});
+        console.log(e);
+    }
+
+    onChangeTag(e){
+        this.setState({tag:e});
+        
+    }
+
     commitAction() {
-        if (this.state.articleModel) {
-            this.props.store.updateContent(this.state.articleModel._id,this.state.title,this.state.summary,this.state.markdownContent);
+        if (this.state.articleModel._id) {
+            let article = {
+                _id:this.state.articleModel._id,
+                title:this.state.title,
+                summary:this.state.summary,
+                content:this.state.markdownContent,
+                category:this.state.category,
+                tag:this.state.tag
+            };
+            this.props.store.updateContent(article);
         }else {
-            this.props.store.addContent(this.state.title,this.state.summary,this.state.markdownContent);
+            let article = {
+                title:this.state.title,
+                summary:this.state.summary,
+                content:this.state.markdownContent,
+                category:this.state.category,
+                tag:this.state.tag
+            };
+            console.log(article);
+            
+            this.props.store.addContent(article);
         }
     }
 
@@ -85,7 +132,7 @@ class EditorContaner extends Component {
         })
     }
     
-
+    
     render() {
         return (
             <div className="EditorContent">
@@ -95,6 +142,7 @@ class EditorContaner extends Component {
                         <span className="titleRight">
                             <input placeholder="请输入标题" value = {this.state.title} onChange={this.onChangeTitle}/>
                         </span>
+                        
                         <span className="saveButton">
                             <button className="button" onClick={this.commitAction}>保存</button>
                         </span>
@@ -131,6 +179,24 @@ class EditorContaner extends Component {
                             audio={false}
                             convertFormat="markdown"
                         /> */}
+                    </div>
+                    <div  className="TypeSelect">
+                        <Select defaultValue={this.state.category} style={{ width: 120 }} onChange={this.onChangeCategory}>
+                            { this.props.store.categoryList.map(
+                                (category, idx) => <Option key={idx} value={category.name}>{category.name}</Option>
+                            ) }
+                        </Select>
+                        <Select tags
+                            style={{ width: '50%' ,marginLeft:'20px'}}
+                            searchPlaceholder="标签模式"
+                            onChange={this.onChangeTag}
+                            defaultValue={this.state.tag}
+                        >
+                            { this.props.store.tagList.map(
+                                (tag, idx) => <Option key={idx} value={tag.name}>{tag.name}</Option>
+                            ) }
+                        </Select>
+                        {/* {this.state.tag} */}
                     </div>
                 <br/>
                 </div>

@@ -6,22 +6,19 @@ import Auth from '../Stores/Auth.js'
 class EditorStore {
   @observable tipMessage = "";
   @observable statusCode = 0;
+  @observable tagList = new Array(0);
+  @observable categoryList = new Array(0);
   constructor() {
     
   }
 
-  @action  addContent(title,summary,content) {
-    console.log(title);
-    console.log(content);
+  @action  addContent(data) {
+    console.log(data);
     //发送摘苹果请求
     ajax({
         url: '/api/v1/admin/article/add',
         method: 'POST',
-        data:{
-          title: title,
-          summary: summary,
-          content: content
-        }
+        data:data
     }).then((response) => {
       console.log(response);
       this.statusCode = response.data.code;
@@ -34,19 +31,47 @@ class EditorStore {
     });
   }
 
-  @action  updateContent(articleId,title,summary,content) {
-    console.log(title);
-    console.log(content);
+  @action  getTagList() {
+    //发送摘苹果请求
+    ajax({
+        url: '/api/v1/admin/tag/list',
+        method: 'POST',
+        data:{
+          status: 1
+        }
+    }).then((response) => {
+      console.log(response);
+      this.tagList = response.data.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  @action  getCagegoryList() {
+    //发送摘苹果请求
+    ajax({
+        url: '/api/v1/admin/category/list',
+        method: 'POST',
+        data:{
+          status: 1
+        }
+    }).then((response) => {
+      console.log(response);
+      this.categoryList = response.data.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  @action  updateContent(data) {
+    console.log(data);
     //发送摘苹果请求
     ajax({
         url: '/api/v1/admin/article/update',
         method: 'POST',
-        data:{
-          _id:articleId,
-          title: title,
-          summary: summary,
-          content: content
-        }
+        data:data
     }).then((response) => {
       console.log(response);
       this.statusCode = response.data.code;

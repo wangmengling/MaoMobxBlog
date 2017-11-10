@@ -22,20 +22,32 @@ class Detail extends Component {
                         </div>
                         
                         <div className="DetailEditButton">
-                            <Link to="/admin/editor">
+                            <Link to="/admin/editor" to={{
+                                pathname: '/admin/editor',
+                                state: { articleModel: this.props.articleModel.location.state.articleModel }
+                            }} >
                                 <span className="button">
                                     编辑
                                 </span>
                             </Link>
                         </div>
                     </div>
+                    <div className="DetailSummaryShow"> 
+                        <div className="summary">
+                            {this.props.articleModel.location.state.articleModel.summary}
+                        </div>
+                    </div>
+
                     <div className="DetailContentShow"> 
-                        <div className="content">
-                        <div dangerouslySetInnerHTML={{__html: this.props.articleModel.location.state.articleModel.content}}/>
+                        <div>
+                            <div dangerouslySetInnerHTML={{__html: this.props.articleModel.location.state.articleModel.content}}/>
+                            {/* {htmlToDraft(this.props.articleModel.location.state.articleModel.content)} */}
                         </div>
                     </div>
                     <div className="DetailContentBottom ">
-                            <span className="tag">Tag</span>
+                            <span className="tag">{this.props.articleModel.location.state.articleModel.category}</span>
+                            {/* <span className="tag">{this.props.articleModel.location.state.articleModel.tag}</span> */}
+                            
                     </div>
                 </div>
         );
