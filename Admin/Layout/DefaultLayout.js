@@ -7,8 +7,8 @@ import {
 } from 'react-router-dom'
 // import {Redirect, Route} from 'react-router';
 import Auth from '../Stores/Auth.js'
-import Header from '../Header'
-import Footer from '../Footer'
+import Header from '../Header/Index'
+import Footer from '../Footer/Index'
 import './DefaultLayout.scss'
 
 const DefaultLayout = ({ component: Component, ...rest }) => {
