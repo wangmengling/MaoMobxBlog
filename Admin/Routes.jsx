@@ -8,12 +8,12 @@ import {
   browserHistory,
   hashRouter
 } from 'react-router-dom'
-import Login from "./Login"
+import Login from "./Login/Index"
 import Home from "./Home/Home"
 import Editor from "./Editor/Index"
 import DefaultLayout from "./Layout/DefaultLayout"
-import List from "./List/"
-import Detail from "./Detail"
+import List from "./List/Index"
+import Detail from "./Detail/Index"
 
 import Auth from './Stores/Auth.js'
 
