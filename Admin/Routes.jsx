@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom'
 import Login from "./Login"
 import Home from "./Home/Home"
-import Editor from "./Editor"
+import Editor from "./Editor/Index"
 import DefaultLayout from "./Layout/DefaultLayout"
 import List from "./List/"
 import Detail from "./Detail"
