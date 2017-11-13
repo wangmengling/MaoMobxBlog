@@ -5,9 +5,9 @@
 
 import Base    from './Base';
 import mongodb from 'mongo-db';
-import config  from '../config/db.config';
-const connectionStr = `mongodb://${config.mongodb.user}:${config.mongodb.pass}`
-+ `@${config.mongodb.ip}:${ config.mongodb.port}/${config.mongodb.db}`;
+// import config  from '../config/db.config';
+// const connectionStr = `mongodb://${config.mongodb.user}:${config.mongodb.pass}`
+// + `@${config.mongodb.ip}:${ config.mongodb.port}/${config.mongodb.db}`;
 
 class Article extends Base {
     constructor(obj) {
