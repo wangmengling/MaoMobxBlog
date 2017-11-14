@@ -11,8 +11,7 @@ const VENOR = [
 "mobx-react",
 "react-router",
 "react-router-dom",
-"axios",
-"bulma"
+"axios"
 ]
 
 module.exports = {
