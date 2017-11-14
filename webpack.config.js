@@ -50,12 +50,12 @@ module.exports = {
         minChunks: Infinity
     }),
     // 只删除 dist 文件夹下的 bundle 和 manifest 文件
-    new CleanWebpackPlugin(['dist/*.bundle.js','dist/manifest.*.js'], {
-      // 打印 log
-        verbose: true,
-        // 删除文件
-        dry: false
-      }),
+    // new CleanWebpackPlugin(['dist/*.bundle.js','dist/manifest.*.js'], {
+    //   // 打印 log
+    //     verbose: true,
+    //     // 删除文件
+    //     dry: false
+    //   }),
       //压缩
     new webpack.optimize.UglifyJsPlugin({
         output: {
