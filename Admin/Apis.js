@@ -4,7 +4,7 @@
 import axios from 'axios';
 // const host = 'HTTP://localhost:3001' ;
 
-const host = 'http://localhost:3002' ;
+const host = 'http://47.100.20.3:3002' ;
 
 export default function apis({ url, method, ...others }) {
   // console.log(host + url)
