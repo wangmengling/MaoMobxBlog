@@ -6,16 +6,9 @@ import Routes from './Routes'
 
 // const appState = new AppState();
 
-// render(
-//   <AppContainer>
-//     <Routes />
-//   </AppContainer>,
-//   document.getElementById('rootAdmin')
-// );
 render(
-  // <AppContainer>
+  <AppContainer>
     <Routes />
-  // </AppContainer>
-  ,
+  </AppContainer>,
   document.getElementById('rootAdmin')
 );

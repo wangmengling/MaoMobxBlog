@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+let CompressionPlugin = require("compression-webpack-plugin");//引入
 
 const VENOR = [
 "react",
@@ -30,7 +31,8 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: './[name].bundle.js',
-    publicPath: '/static/'
+    publicPath: '/static/',
+    chunkFilename: '[name].js'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -47,6 +49,14 @@ module.exports = {
         verbose: true,
         // 删除文件
         dry: false
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        output: {
+          comments: false,//去掉注释
+        },
+        compress: {
+          warnings: false,//去掉警告
+        }
       }),
   ],
   resolve: {
