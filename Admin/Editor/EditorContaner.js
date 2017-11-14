@@ -47,9 +47,10 @@ class EditorContaner extends Component {
         this.props.store.getTagList();
         this.props.store.getCagegoryList();
         this.props.store.statusCode = 0;
-        htmlToDraft(this.props.location.state.articleModel.content);
+        
+        console.log(this.props);
         if (this.props.location.state) {
-            
+            htmlToDraft(this.props.location.state.articleModel.content);
             this.setState({
                 markdownContent:this.props.location.state.articleModel.content,
                 title:this.props.location.state.articleModel.title,
