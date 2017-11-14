@@ -1,5 +1,14 @@
 var path = require('path');
 var webpack = require('webpack');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const VENOR = [
+"react",
+"react-dom",
+"react-lz-editor",
+"mobx",
+"mobx-react"
+]
 
 module.exports = {
   devtool: 'eval',
@@ -15,7 +24,8 @@ module.exports = {
             // 'webpack-dev-server/client?http://localhost:3001',
             // 'webpack/hot/only-dev-server',
             './Admin/Index'
-        ]
+        ],
+        vendor: VENOR
   } , 
   output: {
     path: path.join(__dirname, 'dist'),
@@ -23,7 +33,21 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      // vendor 的意义和之前相同
+      // manifest文件是将每次打包都会更改的东西单独提取出来，保证没有更改的代码无需重新打包，这样可以加快打包速度
+        names: ['vendor', 'manifest'],
+        // 配合 manifest 文件使用
+        minChunks: Infinity
+    }),
+    // 只删除 dist 文件夹下的 bundle 和 manifest 文件
+    new CleanWebpackPlugin(['dist/*.bundle.js','dist/manifest.*.js'], {
+      // 打印 log
+        verbose: true,
+        // 删除文件
+        dry: false
+      }),
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.less', '.scss', '.css'],

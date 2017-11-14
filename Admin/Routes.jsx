@@ -23,6 +23,7 @@ import Auth from './Stores/Auth.js'
 //   }
 // }
 
+
 const Routes = () => (
   <Router  history={hashRouter}>
     <div>
