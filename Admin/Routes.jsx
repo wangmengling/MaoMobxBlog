@@ -8,12 +8,28 @@ import {
   browserHistory,
   hashRouter
 } from 'react-router-dom'
-import Login from "./Login/Index"
-import Home from "./Home/Home"
-import Editor from "./Editor/Index"
+
+import Bundle from './Bundle';
+
+
+import Login from "bundle-loader?lazy&name=login!./Login/Index"
+import Home from "bundle-loader?lazy&name=home!./Home/Home"
+import Editor from "bundle-loader?lazy&name=editor!./Editor/Index"
 import DefaultLayout from "./Layout/DefaultLayout"
-import List from "./List/Index"
-import Detail from "./Detail/Index"
+import List from "bundle-loader?lazy&name=list!./List/Index"
+import Detail from "bundle-loader?lazy&name=detail!./Detail/Index"
+
+const Loading = function () {
+  return <div>Loading...</div>
+};
+
+const createComponent = (component) => () => (
+  <Bundle load={component}>
+      {
+          (Component) => Component ? <Component/> : <Loading/>
+      }
+  </Bundle>
+);
 
 import Auth from './Stores/Auth.js'
 
@@ -23,14 +39,15 @@ import Auth from './Stores/Auth.js'
 //   }
 // }
 
+
 const Routes = () => (
   <Router  history={hashRouter}>
     <div>
-        <DefaultLayout exact path="/admin/editor" component={Editor}/>
-        <DefaultLayout exact path="/admin" component={Home}/>
-        <Route exact path="/admin/login" component={Login}/>
-        <DefaultLayout exact path="/admin/list" component={List}/>
-        <DefaultLayout exact path="/admin/detail" component={Detail}/>
+        <DefaultLayout exact path="/admin/editor" component={createComponent(Editor)}/>
+        <DefaultLayout exact path="/admin" component={createComponent(Home)}/>
+        <Route exact path="/admin/login" component={createComponent(Login)}/>
+        <DefaultLayout exact path="/admin/list" component={createComponent(List)}/>
+        <DefaultLayout exact path="/admin/detail" component={createComponent(Detail)}/>
     </div>
   </Router>
 )
